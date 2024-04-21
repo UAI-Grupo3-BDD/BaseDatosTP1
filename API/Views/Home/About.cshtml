@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Usuario";
+}
+<table class="col-sm-12 table-responsive table-condensed table-sm" style="font-size:small">
+
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Usuario</th>
+            <th>Carpeta Informe</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Email</td>
+                <td>
+                    @item.Username
+                </td>
+                <td>@item.CarpetaInforme</td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+

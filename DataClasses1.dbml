@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BDTP1" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SEDE-TR-NTB-017;Initial Catalog=BDTP1;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="BaseDatosTP1.Properties.Settings" SettingsPropertyName="BDTP1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Region" Member="Region">
+    <Type Name="Region">
+      <Column Name="Id_Region" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Empresa" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Region_Sector" Member="Sector" ThisKey="Id_Region" OtherKey="ID_Region" Type="Sector" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsuarioInterno" Member="UsuarioInterno">
+    <Type Name="UsuarioInterno">
+      <Column Name="Id_UsuarioInterno" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="CarpetaInforme" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="UsuarioInterno_SectorDetalle" Member="SectorDetalle" ThisKey="Id_UsuarioInterno" OtherKey="ResponsableInstalacion" Type="SectorDetalle" />
+      <Association Name="UsuarioInterno_SectorDetalle1" Member="SectorDetalle1" ThisKey="Id_UsuarioInterno" OtherKey="GestorAdministrativo" Type="SectorDetalle" />
+      <Association Name="UsuarioInterno_SectorDetalle2" Member="SectorDetalle2" ThisKey="Id_UsuarioInterno" OtherKey="SupervisorInstalacion" Type="SectorDetalle" />
+      <Association Name="UsuarioInterno_SectorDetalle3" Member="SectorDetalle3" ThisKey="Id_UsuarioInterno" OtherKey="ResponsableZonalSP" Type="SectorDetalle" />
+      <Association Name="UsuarioInterno_SectorDetalle4" Member="SectorDetalle4" ThisKey="Id_UsuarioInterno" OtherKey="GerenteRegional" Type="SectorDetalle" />
+      <Association Name="UsuarioInterno_SectorDetalle5" Member="SectorDetalle5" ThisKey="Id_UsuarioInterno" OtherKey="RepresentanteSP" Type="SectorDetalle" />
+      <Association Name="UsuarioInterno_SectorDetalle6" Member="SectorDetalle6" ThisKey="Id_UsuarioInterno" OtherKey="DirectorTecnico" Type="SectorDetalle" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sector" Member="Sector">
+    <Type Name="Sector">
+      <Column Name="ID_Sector" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Region" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Sector_SectorDetalle" Member="SectorDetalle" ThisKey="ID_Sector" OtherKey="id_Sector" Type="SectorDetalle" />
+      <Association Name="Region_Sector" Member="Region" ThisKey="ID_Region" OtherKey="Id_Region" Type="Region" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SectorDetalle" Member="SectorDetalle">
+    <Type Name="SectorDetalle">
+      <Column Name="id_SectorDetalle" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Area" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Detalle" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="id_Sector" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ResponsableInstalacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GestorAdministrativo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SupervisorInstalacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ResponsableZonalSP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GerenteRegional" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RepresentanteSP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DirectorTecnico" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Sector_SectorDetalle" Member="Sector" ThisKey="id_Sector" OtherKey="ID_Sector" Type="Sector" IsForeignKey="true" />
+      <Association Name="UsuarioInterno_SectorDetalle" Member="UsuarioInterno" ThisKey="ResponsableInstalacion" OtherKey="Id_UsuarioInterno" Type="UsuarioInterno" IsForeignKey="true" />
+      <Association Name="UsuarioInterno_SectorDetalle1" Member="UsuarioInterno1" ThisKey="GestorAdministrativo" OtherKey="Id_UsuarioInterno" Type="UsuarioInterno" IsForeignKey="true" />
+      <Association Name="UsuarioInterno_SectorDetalle2" Member="UsuarioInterno2" ThisKey="SupervisorInstalacion" OtherKey="Id_UsuarioInterno" Type="UsuarioInterno" IsForeignKey="true" />
+      <Association Name="UsuarioInterno_SectorDetalle3" Member="UsuarioInterno3" ThisKey="ResponsableZonalSP" OtherKey="Id_UsuarioInterno" Type="UsuarioInterno" IsForeignKey="true" />
+      <Association Name="UsuarioInterno_SectorDetalle4" Member="UsuarioInterno4" ThisKey="GerenteRegional" OtherKey="Id_UsuarioInterno" Type="UsuarioInterno" IsForeignKey="true" />
+      <Association Name="UsuarioInterno_SectorDetalle5" Member="UsuarioInterno5" ThisKey="RepresentanteSP" OtherKey="Id_UsuarioInterno" Type="UsuarioInterno" IsForeignKey="true" />
+      <Association Name="UsuarioInterno_SectorDetalle6" Member="UsuarioInterno6" ThisKey="DirectorTecnico" OtherKey="Id_UsuarioInterno" Type="UsuarioInterno" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

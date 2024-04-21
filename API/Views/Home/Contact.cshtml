@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Sector";
+}
+
+<table class="col-sm-12 table-responsive table-condensed table-sm" style="font-size:small">
+
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Region</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Codigo</td>
+                <td>@item.Descripcion</td>
+                <td>
+                    @item.ID_Region
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>

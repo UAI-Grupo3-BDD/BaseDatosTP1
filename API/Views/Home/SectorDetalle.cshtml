@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "SectorDetalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="col-sm-12 table-responsive table-condensed table-sm" style="font-size:small">
+
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Area</th>
+            <th>Detalle</th>
+            <th>id_Sector</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Codigo</td>
+                <td>@item.Area</td>
+                <td>
+                    @item.Detalle
+                </td>
+                <td>@item.id_Sector</td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
